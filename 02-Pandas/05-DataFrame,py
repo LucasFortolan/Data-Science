@@ -1,0 +1,37 @@
+import pandas as pd
+import numpy as np
+
+# Tentando ler o arquivo CSV
+df = pd.read_csv(
+    'c:/Users/lucas/OneDrive/Documentos/Python/Data/02-Pandas/titanic-Dataset.csv')
+
+# Exibindo colunas e índice
+print(df.columns)
+print(df.index)
+
+# Exibindo valores únicos da coluna 'Sex' e 'Age'
+print(df['Sex'].unique())
+print(df['Age'].unique())
+
+# Removi o comentário incorreto na linha de valor único
+# print(df['Sex'].unique.value_counts()) # .value_counts() é um método de Series, não de unique()
+
+# Operações estatísticas
+print('Média da idade: ', df['Age'].mean())
+print('Mediana da idade: ', df['Age'].median())
+print('Moda da idade: ', df['Age'].mode()[0])  # mode() retorna uma lista, acessando o primeiro valor
+print('Desvio padrão da idade: ', df['Age'].std())
+print('Variância da idade: ', df['Age'].var())
+
+# Descrição estatística geral do DataFrame
+print(df.describe())
+
+# Checando dados duplicados
+print("Dados duplicados: ", df.duplicated().sum())  # .sum() é um método, precisa de ()
+print("Apagando dados duplicados:\n", df.drop_duplicates())  # Adicionando os parênteses para chamar o método
+
+# Filtrando dados
+print("\n\nFiltro de Dados:\n")
+print(df[df['Age'] > 25])  # Pessoas com mais de 25 anos
+print(df[df['Age'] > df['Age'].mean()])  # Pessoas com idade acima da média
+print(df[df['Sex'] == 'female'])  # Filtrando por gênero feminino
